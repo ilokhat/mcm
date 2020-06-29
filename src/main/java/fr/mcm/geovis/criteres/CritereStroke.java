@@ -54,9 +54,9 @@ public class CritereStroke extends CritereAbstract implements Critere{
             double dd = (distNorm-seuil) > 0.4 ? 0.4 : distNorm-seuil;
             if (dd > 0.01 && dd < 0.1)
                 dd = dd * 3;
-            tableau[0] = 0.25 - dd /2 ;
-            tableau[1] = 0.40 + dd ;
-            tableau[2] = 0.35 - dd /2;
+            tableau[0] = 0.30 - dd /2 ; //0.25
+            tableau[1] = 0.30 + dd ; //0.40
+            tableau[2] = 0.40 - dd /2; //0.35
 
 //            tableau[0] = eps;
 //            tableau[1] = 0.1 - eps;

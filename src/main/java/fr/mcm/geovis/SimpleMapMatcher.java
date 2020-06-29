@@ -1,40 +1,24 @@
 package fr.mcm.geovis;
 
-import java.lang.reflect.Constructor;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
-
 import fr.ign.cogit.appariement.AppariementDST;
-import fr.ign.cogit.cartagen.core.dataset.CartAGenDataSet;
-import fr.ign.cogit.cartagen.core.genericschema.IGeneObj;
-import fr.ign.cogit.cartagen.core.genericschema.network.INetworkNode;
-import fr.ign.cogit.cartagen.spatialanalysis.network.NetworkEnrichment;
 import fr.ign.cogit.cartagen.spatialanalysis.network.Stroke;
 import fr.ign.cogit.cartagen.spatialanalysis.network.StrokesNetwork;
 import fr.ign.cogit.criteria.Critere;
 import fr.ign.cogit.criteria.CritereGeom;
-import fr.ign.cogit.criteria.CritereSemantique;
 import fr.ign.cogit.dao.LigneResultat;
-import fr.ign.cogit.distance.geom.DistanceDirectedHausdorff;
-import fr.ign.cogit.distance.geom.DistanceEcartOrientation;
 import fr.ign.cogit.distance.geom.DistanceEuclidienne;
-import fr.ign.cogit.distance.semantique.DistanceWuPalmer;
 import fr.ign.cogit.distance.text.DistanceSamal;
 import fr.ign.cogit.geoxygene.api.feature.IFeature;
 import fr.ign.cogit.geoxygene.api.feature.IPopulation;
-import fr.ign.cogit.geoxygene.api.spatial.coordgeom.ILineString;
-import fr.ign.cogit.geoxygene.api.spatial.geomaggr.IMultiCurve;
 import fr.ign.cogit.geoxygene.api.spatial.geomprim.IOrientableCurve;
 import fr.ign.cogit.geoxygene.api.spatial.geomroot.IGeometry;
 import fr.ign.cogit.geoxygene.contrib.cartetopo.Arc;
 import fr.ign.cogit.geoxygene.contrib.cartetopo.CarteTopo;
 import fr.ign.cogit.geoxygene.contrib.cartetopo.CarteTopoFactory;
-import fr.ign.cogit.geoxygene.contrib.cartetopo.Face;
-import fr.ign.cogit.geoxygene.contrib.cartetopo.Noeud;
-import fr.ign.cogit.geoxygene.feature.Population;
 import fr.ign.cogit.geoxygene.schemageo.api.support.reseau.ArcReseau;
 import fr.ign.cogit.geoxygene.schemageo.api.support.reseau.NoeudReseau;
 import fr.ign.cogit.geoxygene.schemageo.impl.support.reseau.ArcReseauImpl;
@@ -42,12 +26,8 @@ import fr.ign.cogit.geoxygene.schemageo.impl.support.reseau.NoeudReseauImpl;
 import fr.ign.cogit.geoxygene.spatial.coordgeom.GM_LineString;
 import fr.ign.cogit.geoxygene.spatial.geomaggr.GM_MultiCurve;
 import fr.ign.cogit.geoxygene.util.conversion.ShapefileReader;
-import fr.ign.cogit.gui.TableauResultatFrame;
-import fr.ign.cogit.metadata.Objet;
 import fr.mcm.geovis.criteres.CritereImpNat;
-import fr.mcm.geovis.criteres.CritereImportance;
 import fr.mcm.geovis.criteres.CritereTopo;
-import fr.mcm.geovis.distances.DistanceImp;
 import fr.mcm.geovis.distances.DistanceNatImp;
 
 public class SimpleMapMatcher {

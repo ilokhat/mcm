@@ -18,8 +18,8 @@ public class TestTsuk {
 
         public static void main(String[] args) {
                 
-                String file_path = "/home/imran/testoss/tsukaba/tsukuba.wkt";
-                String file_path_output = "/home/imran/testoss/tsukaba/tsukuba_output.wkt";
+                String file_path = "/home/mac/hdd/code/equarissage_network/tsukuba.wkt";
+                String file_path_output = "/home/mac/hdd/code/equarissage_network/tsukuba_output.wkt";
                 
                 System.out.println("------------------------------------------------------------------------");
                 System.out.println("Reading network file "+file_path+"...");
@@ -49,7 +49,7 @@ public class TestTsuk {
                 double yfin;
                 
                 int node_counter = 0;
-                
+                int l = 0;
                 while(scan.hasNextLine()) {
                         
                         String line = scan.nextLine();
@@ -62,6 +62,7 @@ public class TestTsuk {
                         
                         String coords = wkt_token.nextToken(",");
                         StringTokenizer coords_token = new StringTokenizer(coords," ");
+                        
                         xini = Double.parseDouble(coords_token.nextToken(" "));
                         yini = Double.parseDouble(coords_token.nextToken(" "));
                         
@@ -82,7 +83,7 @@ public class TestTsuk {
                         m.find();
                         String n_fin = m.group();
                         n_fin = n_fin.substring(1, n_fin.length()-1);
-                        
+                        System.out.println(l + "/ c " + coords + "-- n_ini "+ n_ini + " n_fin " + n_fin);
                         if (!NODES.containsKey(n_ini)) {
                                 Double[] COORDS = {xini, yini, (double) node_counter};
                                 NODES.put(n_ini, COORDS);
@@ -102,6 +103,7 @@ public class TestTsuk {
                         EDGES.add(edge);
                         
                         System.out.println("Adding edge #"+(EDGES.size()-1)+":  "+n_ini+" -> "+n_fin);
+                        ++l;
                         
                 }
                 

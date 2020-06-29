@@ -34,7 +34,7 @@ public class ArealDifference {
 	private static int N = 100000;
 
 	// Grid resolution
-	private static double grid_cells_number = 100; //700 
+	private static double grid_cells_number = 300; //700 
 
 	//Get frame
 	private static double xmin = Double.MAX_VALUE;

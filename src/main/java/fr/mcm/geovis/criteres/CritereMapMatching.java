@@ -45,13 +45,14 @@ public class CritereMapMatching extends CritereAbstract implements Critere {
             tableau[1] = ((0.1 - eps) / seuil) * distNorm;
             tableau[2] = (0.4 / seuil) * distNorm + 0.35;
         } else {
-//            tableau[0] = eps;
-//            tableau[1] = 0.1 - eps;
-//            tableau[2] = 0.9;
-            double dd = distNorm - seuil;
-            tableau[0] = 0.2 - dd/8;
-            tableau[1] = 0.3 + dd/4;
-            tableau[2] = 0.5 - dd/8 ;
+//            double dd = distNorm - seuil;
+//            tableau[0] = 0.2 - dd/8;
+//            tableau[1] = 0.3 + dd/4;
+//            tableau[2] = 0.5 - dd/8 ;
+            double dd = (distNorm-seuil) > 0.4 ? 0.4 : distNorm-seuil;
+            tableau[0] = 0.2 - dd/2 ;
+            tableau[1] = 0.7 - dd/2 ;
+            tableau[2] = 0.1 + dd;
 
         }
 

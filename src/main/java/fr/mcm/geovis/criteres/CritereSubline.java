@@ -42,8 +42,8 @@ public class CritereSubline extends CritereAbstract implements Critere{
             if (dd > 0.01 && dd < 0.1)
                 dd = dd * 3;
             tableau[0] = 0.3 - dd/2 ;
-            tableau[1] = 0.5 - dd/2 ;
-            tableau[2] = 0.2 + dd;
+            tableau[1] = 0.6 - dd/2 ;
+            tableau[2] = 0.1 + dd;
 
         }
 
