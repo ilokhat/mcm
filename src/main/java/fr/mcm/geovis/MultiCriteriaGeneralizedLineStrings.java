@@ -93,6 +93,8 @@ public class MultiCriteriaGeneralizedLineStrings {
         carte.creeNoeudsManquants(0.5);
         carte.fusionNoeuds(0.5);
         for (Arc c: carte.getListeArcs()) {
+    		if (c.getCorrespondant(0) == null)
+    			continue;
         	int id = Integer.parseInt(c.getCorrespondant(0).getAttribute("ID").toString());
         	List<Arc> arcsNoeudsFin = new ArrayList<>();
         	List<Arc> arcsNoeudsIni = new ArrayList<>();
@@ -102,12 +104,16 @@ public class MultiCriteriaGeneralizedLineStrings {
         	arcsNoeudsIni.addAll(c.getNoeudIni().getSortants());
         	List<Integer> idsIni = new ArrayList<>();
         	for (Arc an: arcsNoeudsIni) {
+        		if (an.getCorrespondant(0) == null)
+        			continue;
         		int idv = Integer.parseInt(an.getCorrespondant(0).getAttribute("ID").toString());
         		if (idv != id)
         			idsIni.add(idv);
         	}
         	List<Integer> idsFin = new ArrayList<>();
         	for (Arc an: arcsNoeudsFin) {
+        		if (an.getCorrespondant(0) == null)
+        			continue;
         		int idv = Integer.parseInt(an.getCorrespondant(0).getAttribute("ID").toString());
         		if (idv != id)
         			idsFin.add(idv);
@@ -123,6 +129,8 @@ public class MultiCriteriaGeneralizedLineStrings {
         	arcsNoeuds.addAll(c.getNoeudIni().getSortants());
         	List<Integer> idsv = new ArrayList<>();
         	for (Arc an: arcsNoeuds) {
+        		if (an.getCorrespondant(0) == null)
+        			continue;
         		int idv = Integer.parseInt(an.getCorrespondant(0).getAttribute("ID").toString());
         		if (idv != id)
         			idsv.add(idv);
@@ -169,13 +177,16 @@ public class MultiCriteriaGeneralizedLineStrings {
     public static void main(String[] args) throws Exception {
         final double BUFFER_SIZE = 150;
         //csv des resultats du mapmatching
-        String csvMapMatching = "/home/mac/hdd/code/multicriteriamatching/test_create/results.csv";
+        //String csvMapMatching = "/home/mac/hdd/code/multicriteriamatching/test_create/results.csv";
+        String csvMapMatching = "/home/mac/hdd/mac/code/map_matching/donnees_azelle/results_corse.csv"; 
         //réseau sous-jacent
-        String pathTo250kShape = "/home/mac/hdd/code/multicriteriamatching/test_create/routes_250k_alpes.shp";
+        //String pathTo250kShape = "/home/mac/hdd/code/multicriteriamatching/test_create/routes_250k_alpes.shp";
+        String pathTo250kShape = "/home/mac/hdd/mac/code/map_matching/donnees_azelle/data/data250_corse_nord.shp";
         // réseau plus détaillé qu'on cherche à apparier au réseau sous-jacent
-        String pathToBdUniShape = "/home/mac/hdd/code/multicriteriamatching/test_create/routes_bduni_alpes.shp";
+        //String pathToBdUniShape = "/home/mac/hdd/code/multicriteriamatching/test_create/routes_bduni_alpes.shp";
+        String pathToBdUniShape = "/home/mac/hdd/mac/code/map_matching/donnees_azelle/data/data25_corse_nord.shp";
         // csv du résultat
-        String csvOut = "/home/mac/hdd/code/multicriteriamatching/test_create/results3pass.csv";
+        String csvOut = "/home/mac/hdd/mac/code/map_matching/donnees_azelle/results3pass.csv";
         
         Instant debut = Instant.now();
         System.out.println("*************** loading networks");
@@ -201,7 +212,8 @@ public class MultiCriteriaGeneralizedLineStrings {
             IGeometry buff = ref.getGeom().buffer(BUFFER_SIZE);
             IPopulation<IFeature> selection = new Population<>();
             selection.addAll(reseauBdUni.select(buff));
-
+//            if (id250k != 13156)
+//            	continue;
             System.out.println("----------------------------------------------------------------------------------");
             System.out.println("computing for bd 250k ref " + id250k + " -- "+ ++idx_250k + "/" + reseau250k.size());
             System.out.println();
@@ -225,8 +237,9 @@ public class MultiCriteriaGeneralizedLineStrings {
             System.out.println("Pass 2 - Suppression troncons isoles ");
             List<LigneResultat> toremove = new ArrayList<>();
             for (LigneResultat res :resultForThisRef) {
-            	if (res.isDecision() == "true") {
-                    int id = Integer.parseInt(res.getIdTopoComp());
+            	int id = Integer.parseInt(res.getIdTopoComp());
+            	if (res.isDecision() == "true" && voisinage.get(id) != null) {
+                    //int id = Integer.parseInt(res.getIdTopoComp());
                     List<Integer> v1 = voisinage.get(id)[0];
                     int c1 = 0;
                     for (int idv: v1)
@@ -251,8 +264,9 @@ public class MultiCriteriaGeneralizedLineStrings {
             System.out.println("Pass 3 - Repechage troncons in-between");
             List<LigneResultat> toadd = new ArrayList<>();
             for (LigneResultat res :resultForThisRef) {
-            	if (res.isDecision() != "true") {
-                    int id = Integer.parseInt(res.getIdTopoComp());
+            	int id = Integer.parseInt(res.getIdTopoComp());
+            	if (res.isDecision() != "true" && voisinage.get(id) != null) {
+                    //int id = Integer.parseInt(res.getIdTopoComp());
                     List<Integer> v1 = voisinage.get(id)[0];
                     int c1 = 0;
                     for (int idv: v1)

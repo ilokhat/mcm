@@ -19,38 +19,37 @@
             </plugin>
         </plugins>
     </build>
-    <repositories>
-<!--         <repository>
-            <id>Central</id>
-            <name>Central Repository</name>
-            <url>https://repo1.maven.org/maven2</url>
-            <snapshots>
-                <enabled>false</enabled>
-            </snapshots>
-        </repository>
- -->        <repository>
-            <id>cogit-snapshots</id>
-            <name>Cogit Snapshots Repository</name>
-            <url>https://forge-cogit.ign.fr/nexus/content/repositories/snapshots/</url>
-            <snapshots>
-                <enabled>true</enabled>
-            </snapshots>
-            <releases>
-                <enabled>false</enabled>
-            </releases>
-        </repository>
-        <repository>
-            <id>cogit-releases</id>
-            <name>Cogit Releases Repository</name>
-            <url>https://forge-cogit.ign.fr/nexus/content/repositories/releases/</url>
-            <snapshots>
-                <enabled>false</enabled>
-            </snapshots>
-            <releases>
-                <enabled>true</enabled>
-            </releases>
-        </repository>
-    </repositories>
+	<repositories>
+		<!-- <repository> <id>Central</id> <name>Central Repository</name> <url>https://repo1.maven.org/maven2</url> 
+			<snapshots> <enabled>false</enabled> </snapshots> </repository> -->
+		<repository>
+			<id>osgeo</id>
+			<name>OSGeo Release Repository</name>
+			<url>https://repo.osgeo.org/repository/release/</url>
+		</repository>
+		<repository>
+			<id>cogit-snapshots</id>
+			<name>Cogit Snapshots Repository</name>
+			<url>https://forge-cogit.ign.fr/nexus/content/repositories/snapshots/</url>
+			<snapshots>
+				<enabled>true</enabled>
+			</snapshots>
+			<releases>
+				<enabled>false</enabled>
+			</releases>
+		</repository>
+		<repository>
+			<id>cogit-releases</id>
+			<name>Cogit Releases Repository</name>
+			<url>https://forge-cogit.ign.fr/nexus/content/repositories/releases/</url>
+			<snapshots>
+				<enabled>false</enabled>
+			</snapshots>
+			<releases>
+				<enabled>true</enabled>
+			</releases>
+		</repository>
+	</repositories>
     
     <dependencies>
         <dependency>

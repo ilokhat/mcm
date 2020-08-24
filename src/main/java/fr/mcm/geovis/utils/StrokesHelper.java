@@ -32,7 +32,10 @@ public class StrokesHelper {
 
         for (Arc feat : carte.getListeArcs()) {
             int imp = -1;
-            String nature = feat.getCorrespondants().get(0).getAttribute("NATURE").toString();
+            List<IFeature> corrs = feat.getCorrespondants(); //.get(0).getAttribute("NATURE").toString();
+            if (corrs.size() < 1)
+            	continue;
+            String nature = corrs.get(0).getAttribute("NATURE").toString();
             try {
                 imp = Integer.parseInt(feat.getCorrespondants().get(0).getAttribute("IMPORTANCE").toString());
             } catch (NumberFormatException e) {
